@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/search-a-2d-matrix
 
-// For every row : check if 1st is less than target, then search using bineary search as rows are sorted.
+// For every row : check if 1st element is less than target, then search using bineary search as rows are sorted.
 
 
 class Solution {
