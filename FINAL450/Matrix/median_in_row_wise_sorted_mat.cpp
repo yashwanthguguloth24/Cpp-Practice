@@ -1,7 +1,7 @@
 // https://practice.geeksforgeeks.org/problems/median-in-a-row-wise-sorted-matrix1527/1#
 
 
-// Use upperbound for count of elements less than X and X will vary from INT_MIN to INT_MAX , so apply binary search to find X also.
+// Use upperbound for count of elements less than X and X will vary from INT_MIN to INT_MAX , so apply binary search to find X also .
 
 
 class Solution{   
