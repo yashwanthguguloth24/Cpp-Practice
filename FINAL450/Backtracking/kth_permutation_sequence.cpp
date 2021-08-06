@@ -1,4 +1,5 @@
 // https://www.geeksforgeeks.org/find-the-k-th-permutation-sequence-of-first-n-natural-numbers/
+// https://www.youtube.com/watch?v=W9SIlE2jhBQ
 
 // using mathematical method to divide them to boxes and iterate
 
