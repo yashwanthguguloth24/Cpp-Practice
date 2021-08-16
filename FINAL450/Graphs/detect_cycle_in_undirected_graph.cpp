@@ -2,7 +2,7 @@
 
 // using bfs and check for all nodes 
 
-
+// **************BFS*****************************
 class Solution 
 {
     public:
@@ -49,5 +49,45 @@ class Solution
 	    }
 	    return false;
 
+	}
+};
+
+
+
+//*****************MODIFIED DFS*********************
+class Solution 
+{
+    public:
+    bool flag = false;
+    //Function to detect cycle in an undirected graph.
+    void dfsCycle(int v,int parent,vector<bool>&visited,vector<int>adj[])
+    {
+        visited[v] = true;
+        for(auto u:adj[v])
+        {
+            if(visited[u] == false)
+            {
+                dfsCycle(u,v,visited,adj);
+            }
+            else if(u != parent)
+            {
+                flag = true;
+            }
+        }
+    }
+    
+    
+    
+	bool isCycle(int V, vector<int>adj[])
+	{
+	    vector<bool>visited(V,false);
+	    for(int i = 0;i<V;i++)
+	    {
+	        if(visited[i] == false)
+	        {
+	           dfsCycle(i,-1,visited,adj); 
+	        }
+	    }
+	    return flag;
 	}
 };
