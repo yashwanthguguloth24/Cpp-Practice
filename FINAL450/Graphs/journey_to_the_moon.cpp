@@ -1,6 +1,7 @@
 // https://www.hackerrank.com/challenges/journey-to-the-moon/problem
 
 
+// Using both DSU method and DFS
 
 
 
@@ -74,5 +75,81 @@ int journeyToMoon(int n, vector<vector<int>> astronaut) {
             }
         }
         return ans;
+
+}
+
+
+
+// *********** USING DFS ***************
+
+void dfs(int i,int &cntr,vector<vector<int>> &adj,vector<bool> &visited)
+{
+    // if(visited[i])
+    // {
+    //     return;
+    // }
+    cntr++;
+    visited[i] = true;
+    for(int j = 0;j<adj[i].size();j++)
+    {
+        if(visited[adj[i][j]]==false)
+        {
+            dfs(adj[i][j],cntr,adj,visited);
+        }
+    }
+}
+
+int journeyToMoon(int n, vector<vector<int>> astronaut) {
+    vector<bool> visited(n,false);
+    vector<vector<int>> adj(n);
+    for(auto ast:astronaut)
+    {
+        adj[ast[0]].push_back(ast[1]);
+        adj[ast[1]].push_back(ast[0]);
+    }
+    vector<int> poss;
+    for(int i = 0;i<n;i++)
+    {
+        if(visited[i] == false)
+        {
+            int cntr = 0;
+            dfs(i,cntr,adj,visited);
+            poss.push_back(cntr);
+        }
+    }
+
+    
+
+    int l = poss.size();
+
+    // for(int i = 0;i<l;i++)
+    // {
+    //     cout<< poss[i] << " ";
+    // }
+    // cout << endl;
+    // int ans = (l*(l-1))/2;
+    // cout << ans << endl;
+    // for(int i = 0;i<l;i++)
+    // {
+    //     int val = (poss[i]*(poss[i]-1))/2;
+    //     cout << val << " ";
+    //     ans = ans - val;
+    // }
+    // cout << endl;
+    // int l = poss.size();
+    // int ans = 0;
+    long long int ans = (n*(n-1))/2;
+    for(int i = 0;i<l;i++)
+    {
+        // for(int j = i+1;j<l;j++)
+        // {
+        //     ans = ans + poss[i]*poss[j];
+        // }
+        long long int val = (poss[i]*(poss[i]-1))/2;
+        ans = ans - val;
+    }
+    // cout << ans << endl;
+    return ans;
+    
 
 }
