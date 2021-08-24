@@ -87,3 +87,61 @@ int main() {
 }
 
   // } Driver Code Ends
+
+// *********************** DUTCH NATIONAL FLAG APPROACH ***********************
+class Solution
+{
+    public:
+    void swap(int &a,int &b)
+    {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+
+    void sort012(int a[], int n)
+    {
+
+        int i = 0;
+        int j = 0;
+        int k = n-1;
+        while(i<=k)
+        {
+            if(a[i] == 0)
+            {
+                swap(a[i],a[j]);
+                i++;
+                j++;
+            }
+            else if(a[i] == 1)
+            {
+                i++;
+            }
+            else if(a[i] == 2)
+            {
+                swap(a[i],a[k]);
+                k--;
+            }
+        }
+
+    }
+    
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
