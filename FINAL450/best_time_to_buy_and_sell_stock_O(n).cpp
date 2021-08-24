@@ -23,3 +23,25 @@ public:
         return max_profit;
     }
 };
+
+// using stack
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int max_profit = 0;
+        stack<int> stk;
+        for(int i = prices.size()-1;i>=0;i--)
+        {
+            if(stk.size() == 0 || prices[i]>stk.top())
+            {
+                stk.push(prices[i]);
+            }
+            else if(prices[i] <= stk.top())
+            {
+                max_profit = max(max_profit,stk.top()-prices[i]);
+            }
+        }
+        return max_profit;
+
+    }
+};
