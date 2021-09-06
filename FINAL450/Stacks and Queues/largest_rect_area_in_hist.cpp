@@ -85,3 +85,84 @@ int main()
 	return 0;
 }
   // } Driver Code Ends
+
+
+//*************************************************************
+// Using next smaller element on right and next smaller on left
+
+class Solution
+{
+    public:
+    //Function to find largest rectangular area possible in a given histogram.
+    long long getMaxArea(long long arr[], int n)
+    {
+        // Your code here
+        //smallest element on right
+        vector<long long > ser(n);
+        stack<long long > s1;
+        for(long long i = n-1;i>=0;i--)
+        {
+            if(s1.size() == 0)
+            {
+                ser[i] = n;
+                s1.push(i);
+            }
+            else
+            {
+                while(s1.size() != 0 && arr[i] <= arr[s1.top()])
+                {
+                    s1.pop();
+                }
+                if(s1.size() == 0)
+                {
+                    ser[i] = n;
+                }
+                else
+                {
+                    ser[i] = s1.top();
+                }
+                s1.push(i);
+            }
+        }
+        
+        while(s1.size() != 0) s1.pop(); 
+        
+        // smallest element on left
+        vector<long long> sel(n);
+        for(long long i = 0;i<n;i++)
+        {
+            if(s1.size() == 0)
+            {
+                sel[i] = -1;
+                s1.push(i);
+            }
+            else
+            {
+                while(s1.size() != 0 && arr[i] <= arr[s1.top()])
+                {
+                    s1.pop();
+                }
+                if(s1.size() == 0)
+                {
+                    sel[i] = -1;
+                }
+                else
+                {
+                    sel[i] = s1.top();
+                }
+                s1.push(i);
+            }
+        }
+        long long ans = 0;
+        for(int i = 0;i<n;i++)
+        {
+            // cout << ser[i] << " " << sel[i] << endl;
+            ans = max(ans,(arr[i]*(ser[i]-sel[i]-1)));
+        }
+        return ans;
+    }
+};
+
+
+
+
