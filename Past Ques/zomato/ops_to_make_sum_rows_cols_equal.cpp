@@ -32,7 +32,7 @@ class Solution
         int j = 0;
         while(i < n && j < n)
         {
-            int df = mx_sum-min(row_sum[i],col_sum[j]);
+            int df = mx_sum-max(row_sum[i],col_sum[j]);
             matrix[i][j] += df;
             row_sum[i] += df;
             col_sum[j] += df;
