@@ -24,4 +24,27 @@ class Solution{
 };
 
 
+// better approach
 
+class Solution {
+  public:
+    // Function to find the sum of contiguous subarray with maximum sum.
+    long long maxSubarraySum(vector<int> &arr) {
+        // code here...
+        long long max_sum = -10000001;
+        long long cum_sum = 0;
+        long long curr_sum = 0;
+        for(int i = 0;i<arr.size();i++)
+        {
+            cum_sum += arr[i];
+            curr_sum = arr[i];
+            if(curr_sum > cum_sum)
+            {
+                cum_sum = curr_sum;
+            }
+            max_sum = max(max_sum,cum_sum);
+        }
+        return max_sum;
+        
+    }
+};
